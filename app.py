@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+
 import pickle
 
 import numpy
@@ -13,7 +14,7 @@ with open('modelbmi.pkl', 'rb') as fp:
 def index():
     return render_template('index.html', BMI=0)
 
-@app.route('/predict', methods='POST')
+@app.route('/predict', methods=['POST'])
 def predict():
     Status_Gender, Height = [x for x in request.form.values()]
     
