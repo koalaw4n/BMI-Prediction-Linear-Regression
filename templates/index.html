@@ -17,21 +17,14 @@
                 <div class="card">
                   <div class="card-body">
                    <form action="/predict" method="POST">
-                    {% comment %} <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label">Height</label>
-                        <select type="float" class="form-select" aria-label="Default select example" name="Status_Gender" id="Status_Gender">
-                          <option selected>Gender</option>
-                          <option value="1">Male</option>
-                          <option value="0">Female</option>
-                        </select>
-                    </div> {% endcomment %}
+                   
                   <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Gender</label>
-                      <input type="float" class="form-control" name="Status_Gender" id="Status_Gender" placeholder="Input your Gender">
+                      <input type="text" class="form-control" name="Status_Gender" id="Status_Gender" placeholder="Input your Gender">
                     </div>
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Height</label>
-                      <input type="float" class="form-control" name="Height" id="Height" placeholder="Input your Height">
+                      <input type="text" class="form-control" name="Height" id="Height" placeholder="Input your Height">
                     </div>
                 </div>
                 <input type="submit" value="Submit"  class="btn btn-success">
