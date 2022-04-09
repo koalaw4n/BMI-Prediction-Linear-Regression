@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 
 import pickle
 
-import numpy
+import numpy as np
 
 app = Flask(__name__)
 
@@ -23,7 +23,9 @@ def predict():
     data.append(float(Status_Gender))
     data.append(float(Height))
     
-    prediction = model.predict([data])
+    final_features = [np.array(data)]
+    
+    prediction = model.predict(final_features)
     output = round(float(prediction[0], 2))
     return render_template('index.html', Weight=output, Status_Gender=Status_Gender, Height=Height)
 
