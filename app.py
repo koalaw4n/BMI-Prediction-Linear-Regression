@@ -16,18 +16,13 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    Status_Gender, Height = [x for x in request.form.values()]
-    
-    data = []
-    
-    data.append(float(Status_Gender))
-    data.append(float(Height))
-    
-    final_features = [np.array(data)]
+    int_features = [float(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
     
     prediction = model.predict(final_features)
     output = round(float(prediction[0], 2))
-    return render_template('index.html', Weight=output, Status_Gender=Status_Gender, Height=Height)
+    return render_template('index.html', Weight=output)
 
 if __name__ == '__name__':
     app.run(debug=True)
