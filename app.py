@@ -2,8 +2,6 @@ from flask import Flask, request, render_template
 
 import pickle
 
-import numpy as np
-
 app = Flask(__name__)
 
 import pickle
@@ -14,15 +12,18 @@ with open('modelbmi.pkl', 'rb') as fp:
 def index():
     return render_template('index.html', BMI=0)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
-    int_features = [float(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
+    Status_Gender, Height = [x for x in request.form.values()]
     
-    prediction = model.predict(final_features)
+    data = []
+    
+    data.append(float(Status_Gender))
+    data.append(float(Height))
+    
+    prediction = model.predict([data])
     output = round(float(prediction[0], 2))
-    return render_template('index.html', Weight=output)
+    return render_template('index.html', Weight=output, Status_Gender=Status_Gender, Height=Height)
 
 if __name__ == '__name__':
     app.run(debug=True)
