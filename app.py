@@ -1,13 +1,8 @@
 from flask import Flask, request, render_template
-
-import pickle
+import joblib
 import numpy
 
 app = Flask(__name__)
-
-import pickle
-with open('modelbmi.pkl', 'rb') as fp:
-    model = pickle.load(fp)
 
 @app.route('/')
 def index():
@@ -22,7 +17,13 @@ def predict():
     data.append(float(Status_Gender))
     data.append(float(Height))
     
-    prediction = model.predict([data])
+    # Open trained model
+    file = open("modelbmi.pkl","rb")
+    
+    # Load trained model
+    trained_model = joblib.load(file)
+    
+    prediction = trained_model.predict([data])
     output = round(float(prediction[0], 2))
     return render_template('index.html', Weight=output, Status_Gender=Status_Gender, Height=Height)
 
