@@ -12,18 +12,24 @@
   </head>
   <body>
     <div class="container">
-      <div>
-        <h3>Prediction Weight with Linear Regression</h3>
-      </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+        <div class="row row-cols-1 row-cols-md-2 g-4 mb-5 mt-5">
             <div class="col">
                 <div class="card">
+                  <div class="card-header">
+                    <h3>Prediction Weight with Linear Regression</h3>
+                  </div>
                   <div class="card-body">
                    <form action="{{url_for('predict')}}" method="post">
+                   
                   <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Gender</label>
-                      <input type="text" class="form-control" name="Status_Gender" id="Status_Gender" placeholder="Input your Gender">
+                      <select class="form-select" aria-label="Default select example" name="Status_Gender" id="Status_Gender">
+                        <option selected>Select your Gender</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                      </select>
                     </div>
+                    
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Height</label>
                       <input type="text" class="form-control" name="Height" id="Height" placeholder="Input your Height">
@@ -35,29 +41,36 @@
               </div>
               <div class="col">
                 <div class="card">
+                  <div class="card-header">
+                    <label for="exampleFormControlInput1" class="form-label">Prediction Your Weight :</label>
+                  </div>
                   <div class="card-body">
                     <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label">Prediction : </label>
-                      <br>
+                      {% if Status_Gender[0] == "2" %}
+                      {% endif %}
+
                       {% if Status_Gender[0] == "1" %}
+                      <label for="exampleFormControlInput1" class="form-label">Input : </label>
+                      <br>
                       <label for="exampleFormControlInput1" class="form-label">Gender : Male</label>
                       <br>
                       <label for="exampleFormControlInput1" class="form-label">Height : {{Height}}</label>
                       <br>
-                      <label for="exampleFormControlInput1" class="form-label">Hasil : </label>
+                      <label for="exampleFormControlInput1" class="form-label">Output : </label>
                       <br>
-                      <label for="exampleFormControlInput1" class="form-label">Weight : {{Weight[0]}}</label>
+                      <label for="exampleFormControlInput1" class="form-label">Weight : {{Weight[0][0]}}</label>
                       {% endif %}
 
                       {% if Status_Gender[0] == "0" %}
+                      <label for="exampleFormControlInput1" class="form-label">Input : </label>
+                      <br>
                       <label for="exampleFormControlInput1" class="form-label">Gender : Female</label>
                       <br>
                       <label for="exampleFormControlInput1" class="form-label">Height : {{Height}}</label>
                       <br>
-                      <label for="exampleFormControlInput1" class="form-label">Hasil : </label>
+                      <label for="exampleFormControlInput1" class="form-label">Output : </label>
                       <br>
-                      <label for="exampleFormControlInput1" class="form-label">Weight : {{Weight[0]}}</label>
-                      <br>
+                      <label for="exampleFormControlInput1" class="form-label">Weight : {{Weight[0][0]}}</label>
                       {% endif %}
                     </div>
                 </div>

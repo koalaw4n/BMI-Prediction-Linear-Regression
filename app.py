@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', BMI=0)
+    return render_template('index.html', BMI=0, Status_Gender=2)
 
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
@@ -21,7 +21,7 @@ def predict():
             return render_template('index.html', Weight=prediction, Status_Gender=Status_Gender, Height=Height)
         except ValueError:
             return "Please Enter valid values"
-        pass
+pass
 pass
 
 def preprocessDataAndPredict(Status_Gender, Height):
